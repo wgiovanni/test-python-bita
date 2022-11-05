@@ -6,6 +6,10 @@ from config import (
     DATABASE_NAME,
 )
 import psycopg2
+
+#QUERIES
+sql_delete = "DELETE FROM stock"
+
 conn = None
 
 # DATABASE CONNECTION
@@ -20,10 +24,9 @@ try:
 except psycopg2.DatabaseError as e:
     print(e)
 
-# TEST CONNECTION 
+# DELETE DATA TABLE
 cursor = conn.cursor()
-cursor.execute("SELECT * FROM stock")
-data = cursor.fetchall()
+cursor.execute(sql_delete)
+conn.commit()
 
-print(data)
 
